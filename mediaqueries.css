@@ -88,7 +88,8 @@
   }
   .section__pic-container {
     width: auto;
-    height: 46vw;
+    height: 46vw; 
+    padding-top: 15%;
     justify-content: center;
   }
   .section__text__p2 {
@@ -99,5 +100,10 @@
   }
   .text-container {
     text-align: justify;
+    
+
+  }
+  #about{
+    margin-top: -50%;
   }
 }
