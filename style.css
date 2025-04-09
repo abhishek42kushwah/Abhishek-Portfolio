@@ -346,18 +346,18 @@ section {
 
 .article-container {
   display: flex;
-  text-align: initial;
+  text-align: center;
   flex-wrap: wrap;
   flex-direction: row;
-  gap: 2.5rem;
+  gap: 3rem;
   justify-content: space-around;
 }
 
 article {
   display: flex;
-  width: 10rem;
-  justify-content: space-around;
-  gap: 0.5rem;
+  width: 5rem;
+  justify-content: center;
+
 }
 
 article .icon {
