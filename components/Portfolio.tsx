@@ -5,7 +5,7 @@ import { useMotionValue, animate, useMotionTemplate, motion } from "framer-motio
 
 import Image from "next/image"
 import laptop1 from "@/public/crm.grabspace.png"
-import laptop2 from "@/public/finactive.png";
+import laptop2 from "../assets/finactive.png";
 import laptop3 from "@/public/ssbook.png";
 
 const projects = [
