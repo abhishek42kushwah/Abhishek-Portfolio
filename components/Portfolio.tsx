@@ -4,9 +4,6 @@ import { useEffect } from "react"
 import { useMotionValue, animate, useMotionTemplate, motion } from "framer-motion"
 
 import Image from "next/image"
-import laptop1 from "@/public/crm.grabspace.png"
-import laptop2 from "@/public/finactive.png";
-import laptop3 from "@/public/ssbook.png";
 
 const projects = [
     {
@@ -14,7 +11,7 @@ const projects = [
         year: '',
         title: "Grab CRM",
         description: 'Developed a responsive CRM web application for managing leads, clients, and space inquiries efficiently.Implemented secure authentication with redirection to dashboards post-login.Enhanced user experience with role based access and intuitive navigation flows.',
-        Image: laptop1,
+        Image: '/crm.grabspace.png',
         link: "https://crm.grabspace.in",
     },
     {
@@ -22,7 +19,7 @@ const projects = [
         year: '',
         title: "FinActive",
         description: 'Developed finActive.net, a platform to track and manage all financial investments in one place. Integrated real-time portfolio tracking and intuitive visual insights for users. Focused on clean UI and performance for a seamless investment monitoring experience',
-        Image: laptop2,
+        Image: '/finactive.png',
         link: "https://finactive.net",
     },
     {
@@ -30,7 +27,7 @@ const projects = [
         year: '',
         title: "SSBook Club",
         description: 'An online platform to showcase and sell digital products. The website features a modern design, user-friendly navigation, and sections for product listings, descriptions, and purchase options. Ideal for creators looking to monetize their digital products.',
-        Image: laptop3,
+        Image: '/ssbook.png',
         link: "https://my-digital-products-showcase.vercel.app",
     },
 ];
