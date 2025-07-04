@@ -100,7 +100,7 @@ export const Hero = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true, amount: 0.5 }}
         >
-          Frontend Developer based in eocDigitas, with over 1.6 years of experience
+          Frontend Developer based in eocDigitas, with over 1.7 years of experience
         </motion.p>
 
         {/* Download CV Button - Updated to be functional */}
