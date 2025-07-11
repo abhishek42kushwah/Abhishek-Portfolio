@@ -6,30 +6,38 @@ import { useMotionValue, animate, useMotionTemplate, motion } from "framer-motio
 import Image from "next/image"
 
 const projects = [
-    {
-        id: 1,
-        year: '',
-        title: "Grab CRM",
-        description: 'Developed a responsive CRM web application for managing leads, clients, and space inquiries efficiently.Implemented secure authentication with redirection to dashboards post-login.Enhanced user experience with role based access and intuitive navigation flows.',
-        Image: '/crm.grabspace.png',
-        link: "https://crm.grabspace.in",
-    },
-    {
-        id: 2,
-        year: '',
-        title: "FinActive",
-        description: 'Developed finActive.net, a platform to track and manage all financial investments in one place. Integrated real-time portfolio tracking and intuitive visual insights for users. Focused on clean UI and performance for a seamless investment monitoring experience',
-        Image: '/finactive.png',
-        link: "https://finactive.net",
-    },
-    {
-        id: 3,
-        year: '',
-        title: "SSBook Club",
-        description: 'An online platform to showcase and sell digital products. The website features a modern design, user-friendly navigation, and sections for product listings, descriptions, and purchase options. Ideal for creators looking to monetize their digital products.',
-        Image: '/ssbook.png',
-        link: "https://my-digital-products-showcase.vercel.app",
-    },
+  {
+    id: 1,
+    year: '',
+    title: "Grab CRM",
+    description: 'Developed a responsive CRM web application for managing leads, clients, and space inquiries efficiently.Implemented secure authentication with redirection to dashboards post-login.Enhanced user experience with role based access and intuitive navigation flows.',
+    Image: '/2.jpg',
+    link: "https://crm.grabspace.in",
+  },
+  {
+    id: 2,
+    year: '',
+    title: "FinActive",
+    description: 'Developed finActive.net, a platform to track and manage all financial investments in one place. Integrated real-time portfolio tracking and intuitive visual insights for users. Focused on clean UI and performance for a seamless investment monitoring experience',
+    Image: '/1.jpg',
+    link: "https://finactive.net",
+  },
+  {
+    id: 3,
+    year: '',
+    title: "SSBook Club",
+    description: 'An online platform to showcase and sell digital products. The website features a modern design, user-friendly navigation, and sections for product listings, descriptions, and purchase options. Ideal for creators looking to monetize their digital products.',
+    Image: '/3.jpg',
+    link: "https://my-digital-products-showcase.vercel.app",
+  },
+  {
+    id: 4,
+    year: '',
+    title: "Nivishka",
+    description: 'Designed and developed nivishka.com, a modern e-commerce platform for ethnic wear. Implemented a seamless shopping experience with product galleries, secure checkout, and responsive design. Focused on performance, accessibility, and a visually appealing interface to enhance user engagement and drive sales.',
+    Image: '/4.jpg',
+    link: "https://nivishka.com/",
+  },
 ];
 const color_tops = ["#FF0000", "#00FF00", "#0000FF", "#FFFF00"]
 
