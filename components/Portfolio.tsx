@@ -17,13 +17,21 @@ const projects = [
   {
     id: 2,
     year: '',
+    title: "Dava Gwalior",
+    description: 'An admin e-commerce dashboard for tracking sales, revenue, orders, and product analytics. As a front-end developer, this page would feature charts, tables, and KPI cards, built using React or Next.js with Tailwind or Material-UI for styling and libraries like Recharts or Chart.js for visualizations. Your role would include building reusable UI components, integrating APIs for dynamic data, adding filters and pagination, and ensuring responsiveness and role-based access so only authorized admins can view and manage the analytics',
+    Image: '/5.png',
+    link: "https://admin.davagwalior.com",
+  },
+  {
+    id: 3,
+    year: '',
     title: "FinActive",
     description: 'Developed finActive.net, a platform to track and manage all financial investments in one place. Integrated real-time portfolio tracking and intuitive visual insights for users. Focused on clean UI and performance for a seamless investment monitoring experience',
     Image: '/1.jpg',
     link: "https://finactive.net",
   },
   {
-    id: 3,
+    id: 4,
     year: '',
     title: "SSBook Club",
     description: 'An online platform to showcase and sell digital products. The website features a modern design, user-friendly navigation, and sections for product listings, descriptions, and purchase options. Ideal for creators looking to monetize their digital products.',
@@ -31,7 +39,7 @@ const projects = [
     link: "https://my-digital-products-showcase.vercel.app",
   },
   {
-    id: 4,
+    id: 5,
     year: '',
     title: "Nivishka",
     description: 'Designed and developed nivishka.com, a modern e-commerce platform for ethnic wear. Implemented a seamless shopping experience with product galleries, secure checkout, and responsive design. Focused on performance, accessibility, and a visually appealing interface to enhance user engagement and drive sales.',
