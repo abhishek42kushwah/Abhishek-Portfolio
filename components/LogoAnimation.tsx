@@ -4,19 +4,21 @@ import mysql from "@/public/mysql.png";
 import postman from "@/public/postman.png";
 import docker from "@/public/docker.png";
 import jwt from "@/public/jwt.png";
+import formik from "@/public/formik.svg";
 import tailwind from "@/public/tailwind.svg";
 import Bootstrap from "@/public/Bootstrap_logo.svg";
 import material from "@/public/material-ui.svg";
 import redux from "@/public/redux.svg";
 import vsCode from "@/public/visual-studio-code-1.svg";
 import reactQuary from "@/public/react-query.svg";
-import { motion } from "framer-motion";
 
+import { motion } from "framer-motion";
 const images = [
   { src: docker, alt: "docker" },
   { src: mysql, alt: "mysql" },
   { src: postman, alt: "postman" },
   { src: jwt, alt: "jwt" },
+  { src: formik, alt: "formik" },
   { src: reactQuary, alt: "reactQuery" },
   { src: tailwind, alt: "tailwind" },
   { src: Bootstrap, alt: "bootstrap" },
