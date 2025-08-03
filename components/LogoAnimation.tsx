@@ -11,13 +11,14 @@ import material from "@/public/material-ui.svg";
 import redux from "@/public/redux.svg";
 import vsCode from "@/public/visual-studio-code-1.svg";
 import reactQuary from "@/public/react-query.svg";
-
+import prisma from "@/public/prisma.svg";
 import { motion } from "framer-motion";
 const images = [
   { src: docker, alt: "docker" },
   { src: mysql, alt: "mysql" },
   { src: postman, alt: "postman" },
   { src: jwt, alt: "jwt" },
+  { src: prisma, alt: "prisma" },
   { src: formik, alt: "formik" },
   { src: reactQuary, alt: "reactQuery" },
   { src: tailwind, alt: "tailwind" },
