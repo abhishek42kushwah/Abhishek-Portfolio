@@ -3,8 +3,9 @@ import React from "react";
 import { motion } from "framer-motion";
 import { FaReact,FaGithub ,FaCss3Alt  } from "react-icons/fa";
 import { IoLogoNodejs,IoLogoHtml5  } from "react-icons/io";
-import { SiTypescript, SiMongodb,SiExpress,SiMysql  } from "react-icons/si";
+import { SiTypescript, SiMongodb,SiExpress,SiMysql, SiNestjs} from "react-icons/si";
 import { RiJavascriptLine } from "react-icons/ri";
+
 const stackItems = [
   { id: 1, name: "React", icon: FaReact, color: "#61DAFB" }, // React 
   { id: 2, name: "Node.js", icon: IoLogoNodejs, color: "#68A063" }, // Node.js 
@@ -16,6 +17,7 @@ const stackItems = [
   { id: 8, name: "MongoDB", icon: SiMongodb, color: "#47A248" }, // MongoDB 
   { id: 9, name: "Express.js", icon: SiExpress, color: "#000000" }, // Express.js 
   { id: 10, name: "MySQL", icon: SiMysql, color: "#4479A1" }, // MySQL
+  { id: 11, name: "NestJS", icon: SiNestjs, color: "#E0234E" }, // NestJS
 ];
 
 export const Stack = () => {
