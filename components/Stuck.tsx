@@ -7,17 +7,17 @@ import { SiTypescript, SiMongodb,SiExpress,SiMysql, SiNestjs} from "react-icons/
 import { RiJavascriptLine } from "react-icons/ri";
 
 const stackItems = [
-  { id: 1, name: "React", icon: FaReact, color: "#61DAFB" }, // React 
-  { id: 2, name: "Node.js", icon: IoLogoNodejs, color: "#68A063" }, // Node.js 
-  { id: 3, name: "Github", icon: FaGithub, color: "#000" },
   { id: 4, name: "HTML", icon: IoLogoHtml5, color: "#E34F26" }, // HTML
   { id: 5, name: "CSS", icon: FaCss3Alt, color: "#264de4" }, // CSS
   { id: 6, name: "JavaScript", icon: RiJavascriptLine, color: "#F0DB4F" }, // JavaScript
   { id: 7, name: "TypeScript", icon: SiTypescript, color: "#3178C6" }, // TypeScript 
-  { id: 8, name: "MongoDB", icon: SiMongodb, color: "#47A248" }, // MongoDB 
-  { id: 9, name: "Express.js", icon: SiExpress, color: "#000000" }, // Express.js 
-  { id: 10, name: "MySQL", icon: SiMysql, color: "#4479A1" }, // MySQL
+  { id: 1, name: "React", icon: FaReact, color: "#61DAFB" }, // React 
+  { id: 2, name: "Node.js", icon: IoLogoNodejs, color: "#68A063" }, // Node.js 
   { id: 11, name: "NestJS", icon: SiNestjs, color: "#E0234E" }, // NestJS
+  { id: 9, name: "Express.js", icon: SiExpress, color: "#000000" }, // Express.js 
+  { id: 8, name: "MongoDB", icon: SiMongodb, color: "#47A248" }, // MongoDB 
+  { id: 10, name: "MySQL", icon: SiMysql, color: "#4479A1" }, // MySQL
+  { id: 3, name: "Github", icon: FaGithub, color: "#000" },
 ];
 
 export const Stack = () => {
