@@ -35,7 +35,7 @@ export const Navbar = () => {
             }
            </ul>
          </div>
-         <div onClick={toggleNav} className="md:hidden absolute top-5 right-14 border rounded z-50 text-white/70 p-2">
+         <div onClick={toggleNav} className="md:hidden absolute top-5 right-6 border rounded z-50 text-white/70 p-2">
          {
           nav ? <AiOutlineClose size={30}/> :  <AiOutlineMenu size={30}/> 
          }
@@ -51,7 +51,7 @@ export const Navbar = () => {
             <Link
               href={link.link}
               onClick={closeNav}
-              className="text-5xl text-white hover:text-gray-400 transition duration-300"
+              className="text-4xl text-white hover:text-gray-400 transition duration-300"
             >
               {link.name}
             </Link>

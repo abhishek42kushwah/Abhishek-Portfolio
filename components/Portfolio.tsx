@@ -1,13 +1,12 @@
 "use client";
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   useMotionValue,
   animate,
   useMotionTemplate,
   motion,
+  AnimatePresence,
 } from "framer-motion";
-
 import Image from "next/image";
 
 const projects = [
@@ -56,14 +55,32 @@ const projects = [
     Image: "/4.jpg",
     link: "https://nivishka.com/",
   },
+  {
+    id: 6,
+    year: "",
+    title: "ERP",
+    description:
+      "Developed a robust Enterprise Resource Planning (ERP) system using React 19, Node.js/Express, and PostgreSQL. Engineered complex modules including an automated Checklist Management system for recurring tasks and a multi-stage Help Ticket (FMS) workflow with automated Turn-Around Time (TAT) tracking. Integrated Redux Toolkit for efficient state management and utilized JWT for secure authentication, ensuring a high-performance and scalable business solution.",
+    Image: "/6.png",
+    link: "https://erp.dtableanalytics.com"
+  },
+  {
+    id: 7,
+    year: "",
+    title: "Sparsh GPT",
+    description:
+      "Built the frontend of Sparsh GPT, a multi-tenant AI-powered platform combining a Support Engine (contextual AI chatbot) with a Learning Management System (LMS), using React 19, Redux Toolkit, React Router, and Tailwind CSS. Developed a real-time AI chat interface with markdown rendering, role-based dashboards and protected routes for a four-tier access control system (SuperAdmin, Admin, Client Admin, Client User), and reusable UI components including sidebar navigation, modals, and notification panels. Implemented the LMS module with course catalogs, video/PDF content players, and MCQ/descriptive assessment interfaces. Integrated RESTful APIs using Axios for project management, batch assignment, company onboarding, and team management workflows, and deployed the application on Vercel with Vite as the build tool.",
+    Image: "/7.png",
+    link: "https://erp.theknowcart.com"
+  },
 ];
+
 const color_tops = ["#FF0000", "#00FF00", "#0000FF", "#FFFF00"];
 
 export const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState(projects[0]);
   const COLOR = useMotionValue(color_tops[0]);
 
-  // Animate the gradient color
   useEffect(() => {
     const controls = animate(COLOR, color_tops, {
       duration: 10,
@@ -81,7 +98,7 @@ export const Portfolio = () => {
     <motion.section
       style={{ backgroundImage }}
       id="portfolio"
-      className="py-32 text-white object-fit-contain overflow-hidden bg-black min-h-screen flex items-center"
+      className="py-32 text-white overflow-hidden bg-black min-h-screen flex items-center"
     >
       <div className="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-12">
         {/* Left Section - Project List */}
@@ -91,7 +108,7 @@ export const Portfolio = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true, amount: 0.5 }}
         >
-          <h1 className="text-6xl font-bold mb-10">
+          <h1 className="text-4xl md:text-6xl font-bold mb-10">
             Selected <span className="text-gray-400">Projects</span>
           </h1>
           <div className="flex flex-col gap-4">
@@ -107,7 +124,7 @@ export const Portfolio = () => {
               >
                 <p className="text-gray-400 text-lg mb-2">{project.year}</p>
                 <h3
-                  className={`text-3xl font-semibold group-hover:text-gray-400 transition-colors ${
+                  className={`text-2xl md:text-3xl font-semibold group-hover:text-gray-400 transition-colors ${
                     selectedProject.id === project.id ? "text-gray-200" : ""
                   } duration-300`}
                 >
@@ -144,24 +161,36 @@ export const Portfolio = () => {
           </div>
         </motion.div>
 
-        {/* Right Section - Project Image */}
-        <motion.div
-          className="flex justify-center items-center"
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true, amount: 0.5 }}
-        >
-          <div className="relative w-full h-96 lg:h-[500px]">
-            <Image
-              src={selectedProject.Image}
-              alt={selectedProject.title}
-              fill
-              className="object-cover rounded-lg"
-            />
+        {/* Right Section - Project Image Stack */}
+        <div className="flex justify-center items-center">
+          <div className="relative w-full h-64 md:h-96 lg:h-[500px] overflow-hidden rounded-lg">
+            {projects.map((project) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0 }}
+                animate={{ 
+                  opacity: selectedProject.id === project.id ? 1 : 0,
+                  scale: selectedProject.id === project.id ? 1 : 1.05,
+                  zIndex: selectedProject.id === project.id ? 10 : 0
+                }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                className="absolute inset-0"
+              >
+                <Image
+                  src={project.Image}
+                  alt={project.title}
+                  fill
+                  priority={true}
+                  className="object-cover rounded-lg"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </motion.div>
+            ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </motion.section>
   );
 };
+
+export default Portfolio;

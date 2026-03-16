@@ -10,7 +10,7 @@ export default function Footer() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="flex flex-col md:flex-row items-center justify-between w-full h-auto bg-black py-10 md:py-[100px] px-4 md:px-[400px]"
+       className="flex flex-col md:flex-row items-center justify-between w-full h-auto bg-black py-10 md:py-[100px] px-6 md:px-16 lg:px-48"
     >
       {/* Text Section */}
       <motion.div

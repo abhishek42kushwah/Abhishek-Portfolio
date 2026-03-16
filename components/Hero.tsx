@@ -42,16 +42,16 @@ export const Hero = () => {
           Open for work
         </motion.span>
 
-        {/* Hi, I am */}
+         {/* Hi, I am */}
         <motion.h1
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="text-white/40 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold"
+          className="text-white/40 text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold"
         >
           Hi, I am
         </motion.h1>
-
+ 
         {/* Profile Image */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -61,21 +61,21 @@ export const Hero = () => {
         >
           <Image
             src={image}
-            width={250}
-            height={250}
             alt="Profile Picture"
-            className="rounded-full"
+            width={150}
+            height={150}
+            className="rounded-full sm:w-[250px] sm:h-[250px] w-[150px] h-[150px] object-cover"
           />
         </motion.div>
-
+ 
         {/* Name */}
         <motion.h1
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold"
+          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold"
         >
-         Abhishek Kushwah
+          Abhishek Kushwah
         </motion.h1>
 
         {/* Happy Clients Section */}
@@ -100,7 +100,7 @@ export const Hero = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true, amount: 0.5 }}
         >
-          Frontend Developer based in ecoDigitas, with close to 2 years of experience
+          Frontend Developer based in ecoDigitas, with close to 2+ years of experience
         </motion.p>
 
         {/* Download CV Button - Updated to be functional */}
