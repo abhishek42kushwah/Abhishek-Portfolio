@@ -22,14 +22,14 @@ const services = [
       id: 3,
       description: "Database Implementation",
       details: "Designing and implementing database solutions using both MongoDB for NoSQL and MySQL for relational data",
-      technologies: ["MongoDB", "MySQL", "Mongoose", "SQL"],
+      technologies: ["MongoDB", "MySQL", "Mongoose", "SQL", "Neon"],
       expertise: ["Schema Design", "CRUD Operations", "Data Modeling", "Query Writing"]
     },
     {
       id: 4,
       description: "Frontend Development",
       details: "Creating responsive, modern user interfaces with React, focusing on component reusability and state management",
-      technologies: ["React", "TypeScript", "CSS3", "HTML5"],
+      technologies: ["React", "JavaScript", "TypeScript", "CSS3", "HTML5"],
       expertise: ["Hooks", "Functional Components", "Responsive Design", "Context API"]
     },
     {
@@ -50,7 +50,7 @@ const services = [
       id: 7,
       description: "Deployment & Version Control",
       details: "Deploying applications using Vercel for Next.js projects and maintaining code with version control",
-      technologies: ["Vercel", "Git", "GitHub", "Environment Variables"],
+      technologies: ["Vercel","Render","Netlify", "Hostinger", "Git", "GitHub", "Environment Variables"],
       expertise: ["Continuous Deployment", "Branch Management", "Environment Setup", "Project Configuration"]
     }
   ];
