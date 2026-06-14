@@ -100,13 +100,13 @@ export const Hero = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true, amount: 0.5 }}
         >
-          Frontend Developer based in ecoDigitas, with 2+ years of experience
+          Mern Stack Developer based in D Table Analytics, with 2+ years of experience
         </motion.p>
 
         {/* Download CV Button - Updated to be functional */}
         <motion.a
           href="/AbhishekKushwahCV.pdf" // Path to your CV file in the public folder
-          download="AbhishekKushwahCV.pdf" // Name that will be used when downloading
+          download="Abhishek_Kushwah_CV.pdf" // Name that will be used when downloading
           className="flex w-fit items-center gap-2 rounded-full px-4 py-2 bg-purple-600 hover:bg-purple-700 transition-colors cursor-pointer"
           style={{ border, boxShadow }}
           whileHover={{ scale: 1.015 }}

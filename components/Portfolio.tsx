@@ -73,6 +73,15 @@ const projects = [
     Image: "/7.png",
     link: "https://erp.theknowcart.com"
   },
+  {
+    id: 8,
+    year: "",
+    title: "Linkd ERP",
+    description:
+      "Built a full-stack, role-based Manufacturing ERP for a textile/sublimation-printing business, digitizing end-to-end operations across inventory, procurement, production, orders, finance/GST, and HR/payroll in one platform. Architected a modular, feature-based frontend with React 18 + Vite, Redux Toolkit, TanStack React Query, and Tailwind CSS — 60+ lazy-loaded route modules for a lean, scalable bundle. Engineered a custom Role-Based Access Control (RBAC) permission engine with per-module/per-action guards, a security-matrix UI, and an audit-log trail. Delivered end-to-end inventory management with separate inward/outward/order flows, stock-ledger and lot tracking, plus QR/barcode-driven warehouse operations using camera-based scanning. Backed by Node.js/Express 5, PostgreSQL with Sequelize, JWT auth, AWS S3 file storage, and PDFKit report generation, with live production/capacity dashboards and Indian GST-compliant finance reporting.",
+    Image: "/linkd-erp.png",
+    link: "https://erp.linkdprints.com",
+  },
 ];
 
 const color_tops = ["#FF0000", "#00FF00", "#0000FF", "#FFFF00"];
