@@ -57,82 +57,95 @@ const services = [
 
   export const Services = () => {
     const [activeService, setActiveService] = useState<number | null>(null);
-  
+
     return (
-      <section id="services" className="text-white py-20 bg-black">
-        <div className="container mx-auto flex flex-col md:flex-row gap-8 px-4">
+      <section id="services" className="text-white py-24 bg-black">
+        <div className="container mx-auto flex flex-col md:flex-row gap-8 lg:gap-12 px-4">
           {/* Left Section - Sticky Header */}
           <motion.div
-            className="md:w-1/4"
+            className="md:w-1/3"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true}}
           >
-            <h1 className="text-5xl lg:text-6xl text-purple-600 font-extrabold sticky top-20">
-              Skills
-              <span className="block mt-2 text-lg font-normal text-gray-400">
-                MERN Developer
+            <div className="sticky top-24">
+              <span className="inline-block rounded-full bg-purple-600/20 px-4 py-1.5 text-sm text-purple-400 font-semibold mb-4">
+                What I Do
               </span>
-            </h1>
+              <h1 className="text-5xl lg:text-6xl text-white font-extrabold">
+                Skills &amp;
+                <span className="block text-purple-600">Services</span>
+              </h1>
+              <p className="mt-4 text-gray-400 max-w-xs">
+                A full-stack MERN toolkit — tap any card to explore the
+                technologies and expertise behind it.
+              </p>
+            </div>
           </motion.div>
-  
+
           {/* Right Section - Services List */}
-          <div className="md:w-3/4 space-y-6">
-            {services.map((service) => (
+          <div className="md:w-2/3 space-y-4">
+            {services.map((service) => {
+              const isOpen = activeService === service.id;
+              return (
               <motion.div
                 key={service.id}
-                className="bg-[#212529] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
+                className={`rounded-2xl border backdrop-blur-sm overflow-hidden transition-all duration-300 ${
+                  isOpen
+                    ? "border-purple-500/50 bg-white/[0.07]"
+                    : "border-white/10 bg-white/[0.04] hover:border-purple-500/30 hover:bg-white/[0.06]"
+                }`}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true, amount: 0.5 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true, amount: 0.3 }}
               >
                 <div
                   className="p-6 cursor-pointer"
                   onClick={() =>
-                    setActiveService(activeService === service.id ? null : service.id)
+                    setActiveService(isOpen ? null : service.id)
                   }
                 >
-                  <div className="flex items-start justify-between">
+                  <div className="flex items-start justify-between gap-4">
                     <div className="flex gap-4 items-start">
-                      <span className="text-purple-600 text-4xl font-bold">
+                      <span className="bg-gradient-to-br from-purple-400 to-purple-700 bg-clip-text text-3xl font-extrabold text-transparent">
                         {String(service.id).padStart(2, "0")}
                       </span>
                       <div>
-                        <h3 className="text-xl font-bold text-gray-200">
+                        <h3 className="text-lg sm:text-xl font-bold text-white">
                           {service.description}
                         </h3>
-                        <p className="text-gray-400 mt-2">{service.details}</p>
+                        <p className="text-gray-400 mt-2 text-sm sm:text-base">{service.details}</p>
                       </div>
                     </div>
                     <span
-                      className={`text-purple-600 text-4xl transform transition-transform duration-300 ${
-                        activeService === service.id ? "rotate-180" : ""
+                      className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-purple-500/40 text-purple-400 text-2xl leading-none transition-transform duration-300 ${
+                        isOpen ? "rotate-45 bg-purple-500/20" : ""
                       }`}
                     >
-                      ↓
+                      +
                     </span>
                   </div>
-  
+
                   {/* Expanded Content */}
-                  {activeService === service.id && (
+                  {isOpen && (
                     <motion.div
-                      className="mt-6 pt-6 border-t border-gray-700"
+                      className="mt-6 pt-6 border-t border-white/10"
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
                       transition={{ duration: 0.3 }}
                     >
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                          <h4 className="font-semibold text-gray-400 mb-2">
+                          <h4 className="font-semibold text-gray-400 mb-3 text-sm uppercase tracking-wider">
                             Technologies
                           </h4>
                           <div className="flex flex-wrap gap-2">
                             {service.technologies.map((tech, index) => (
                               <span
                                 key={index}
-                                className="px-3 py-1 bg-purple-100 text-black font-bold rounded-full text-sm"
+                                className="px-3 py-1 bg-purple-100 text-black font-semibold rounded-full text-sm"
                               >
                                 {tech}
                               </span>
@@ -140,14 +153,14 @@ const services = [
                           </div>
                         </div>
                         <div>
-                          <h4 className="font-semibold text-gray-400 mb-2">
+                          <h4 className="font-semibold text-gray-400 mb-3 text-sm uppercase tracking-wider">
                             Key Expertise
                           </h4>
                           <div className="flex flex-wrap gap-2">
                             {service.expertise.map((skill, index) => (
                               <span
                                 key={index}
-                                className="px-3 py-1 bg-purple-600/20 text-purple-400 font-bold rounded-full text-sm"
+                                className="px-3 py-1 border border-purple-500/30 bg-purple-500/10 text-purple-300 font-medium rounded-full text-sm"
                               >
                                 {skill}
                               </span>
@@ -159,7 +172,7 @@ const services = [
                   )}
                 </div>
               </motion.div>
-            ))}
+            );})}
           </div>
         </div>
       </section>

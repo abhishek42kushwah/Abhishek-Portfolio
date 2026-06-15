@@ -8,6 +8,7 @@ import {
   AnimatePresence,
 } from "framer-motion";
 import Image from "next/image";
+import { FiArrowUpRight } from "react-icons/fi";
 
 const projects = [
   {
@@ -117,67 +118,90 @@ export const Portfolio = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true, amount: 0.5 }}
         >
+          <span className="inline-block rounded-full bg-purple-600/20 px-4 py-1.5 text-sm text-purple-400 font-semibold mb-4">
+            My Work
+          </span>
           <h1 className="text-4xl md:text-6xl font-bold mb-10">
             Selected <span className="text-gray-400">Projects</span>
           </h1>
-          <div className="flex flex-col gap-4">
-            {projects.map((project) => (
+          <div className="flex flex-col gap-2">
+            {projects.map((project, index) => {
+              const isActive = selectedProject.id === project.id;
+              return (
               <motion.div
                 key={project.id}
                 onClick={() => setSelectedProject(project)}
-                className="cursor-pointer mb-8 group"
+                className={`cursor-pointer group rounded-2xl border p-5 transition-all duration-300 ${
+                  isActive
+                    ? "border-purple-500/50 bg-white/[0.06]"
+                    : "border-transparent hover:border-white/10 hover:bg-white/[0.03]"
+                }`}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true, amount: 0.5 }}
+                transition={{ duration: 0.5, delay: 0.05 }}
+                viewport={{ once: true, amount: 0.3 }}
               >
-                <p className="text-gray-400 text-lg mb-2">{project.year}</p>
-                <h3
-                  className={`text-2xl md:text-3xl font-semibold group-hover:text-gray-400 transition-colors ${
-                    selectedProject.id === project.id ? "text-gray-200" : ""
-                  } duration-300`}
-                >
-                  {project.title}
-                </h3>
-                {selectedProject.id === project.id && (
+                <div className="flex items-center gap-4">
+                  <span
+                    className={`text-sm font-mono transition-colors ${
+                      isActive ? "text-purple-400" : "text-gray-600"
+                    }`}
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <h3
+                    className={`text-2xl md:text-3xl font-semibold transition-colors duration-300 ${
+                      isActive ? "text-white" : "text-gray-500 group-hover:text-gray-300"
+                    }`}
+                  >
+                    {project.title}
+                  </h3>
+                </div>
+                {isActive && (
                   <motion.div
-                    className="border-b-2 border-gray-200"
-                    initial={{ width: 0 }}
-                    animate={{ width: "100%" }}
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
                     transition={{ duration: 0.3 }}
-                  />
-                )}
-                {selectedProject.id === project.id && (
-                  <div>
-                    <motion.p
-                      className="text-gray-400 mt-2"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.3, delay: 0.2 }}
-                    >
+                    className="overflow-hidden"
+                  >
+                    {/* Mobile preview image */}
+                    <div className="relative mt-4 h-52 w-full overflow-hidden rounded-xl border border-white/10 lg:hidden">
+                      <Image
+                        src={project.Image}
+                        alt={project.title}
+                        fill
+                        className="object-cover"
+                        sizes="100vw"
+                      />
+                    </div>
+                    <p className="text-gray-400 mt-4 text-sm leading-relaxed line-clamp-4">
                       {project.description}
-                    </motion.p>
+                    </p>
                     <button
-                      onClick={() => window.open(project.link, "_blank")}
-                      className="bg-white p-2 text-black mt-2 px-4 rounded-md font-bold hover:bg-black hover:text-white transition-all duration-300"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.open(project.link, "_blank");
+                      }}
+                      className="mt-4 inline-flex items-center gap-2 rounded-full bg-purple-600 px-5 py-2 font-semibold text-white transition-all duration-300 hover:bg-purple-700"
                     >
-                      Visit
+                      Visit Site
+                      <FiArrowUpRight />
                     </button>
-                  </div>
+                  </motion.div>
                 )}
               </motion.div>
-            ))}
+            );})}
           </div>
         </motion.div>
 
         {/* Right Section - Project Image Stack */}
-        <div className="flex justify-center items-center">
-          <div className="relative w-full h-64 md:h-96 lg:h-[500px] overflow-hidden rounded-lg">
+        <div className="hidden lg:flex justify-center items-center">
+          <div className="sticky top-24 w-full h-[500px] overflow-hidden rounded-2xl border border-white/10 shadow-[0_8px_40px_-12px_rgba(168,85,247,0.4)]">
             {projects.map((project) => (
               <motion.div
                 key={project.id}
                 initial={{ opacity: 0 }}
-                animate={{ 
+                animate={{
                   opacity: selectedProject.id === project.id ? 1 : 0,
                   scale: selectedProject.id === project.id ? 1 : 1.05,
                   zIndex: selectedProject.id === project.id ? 10 : 0
@@ -190,9 +214,12 @@ export const Portfolio = () => {
                   alt={project.title}
                   fill
                   priority={true}
-                  className="object-cover rounded-lg"
+                  className="object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                  <h4 className="text-xl font-bold text-white">{project.title}</h4>
+                </div>
               </motion.div>
             ))}
           </div>
