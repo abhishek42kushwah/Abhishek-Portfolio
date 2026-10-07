@@ -1,70 +1,88 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Inter, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { MotionProvider } from "@/components/ui/MotionProvider";
+import { profile, socials } from "@/lib/data";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+  variable: "--font-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
+const title = `${profile.name} | ${profile.role}`;
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://abhishek-portfolio.vercel.app"),
-  title: "Abhishek Kushwah | MERN Stack Developer",
-  description:
-    "Portfolio of Abhishek Kushwah — MERN Stack Developer with 2+ years of experience building fast, scalable web apps with React, Next.js, TypeScript & Node.js.",
+  metadataBase: new URL(profile.siteUrl),
+  title,
+  description: profile.description,
   keywords: [
     "Abhishek Kushwah",
     "MERN Stack Developer",
-    "React Developer",
-    "Next.js Developer",
-    "Frontend Developer",
     "Full Stack Developer",
-    "Portfolio",
+    "React Developer",
+    "Node.js Developer",
+    "TypeScript",
+    "ERP Developer",
+    "Bhopal",
   ],
-  authors: [{ name: "Abhishek Kushwah" }],
-  icons: {
-    icon: "/profilepic.png",
-    apple: "/profilepic.png",
-  },
+  authors: [{ name: profile.name, url: profile.siteUrl }],
+  creator: profile.name,
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Abhishek Kushwah | MERN Stack Developer",
-    description:
-      "MERN Stack Developer with 2+ years of experience building fast, scalable web apps.",
     type: "website",
-    images: [
-      {
-        url: "/profilepic.png",
-        width: 1200,
-        height: 630,
-        alt: "Abhishek Kushwah",
-      },
-    ],
+    url: "/",
+    siteName: profile.name,
+    title,
+    description: profile.description,
+    locale: "en_IN",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Abhishek Kushwah | MERN Stack Developer",
-    description:
-      "MERN Stack Developer with 2+ years of experience building fast, scalable web apps.",
-    images: ["/profilepic.png"],
+    title,
+    description: profile.description,
   },
+  robots: { index: true, follow: true },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export const viewport: Viewport = {
+  themeColor: "#050505",
+  colorScheme: "dark",
+};
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: profile.name,
+  jobTitle: profile.role,
+  url: profile.siteUrl,
+  email: `mailto:${profile.email}`,
+  address: { "@type": "PostalAddress", addressLocality: "Bhopal", addressRegion: "Madhya Pradesh", addressCountry: "IN" },
+  sameAs: [socials.github, socials.linkedin],
+  knowsAbout: ["React", "Node.js", "Express.js", "MongoDB", "TypeScript", "Next.js", "ERP systems"],
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black`}
-      >
-        {children}
+    <html lang="en" className={`${inter.variable} ${geistMono.variable}`}>
+      <body>
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-fg focus:px-4 focus:py-2 focus:text-sm focus:text-background"
+        >
+          Skip to content
+        </a>
+        <MotionProvider>{children}</MotionProvider>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
       </body>
     </html>
   );

@@ -1,212 +1,93 @@
-"use client"
-import { useEffect } from "react"
-import { useMotionValue, animate, useMotionTemplate, motion } from "framer-motion"
-import Image from "next/image"
-import Link from "next/link"
-import image from "@/public/profilepic.png"
-// import obj from "@/public/3d-modeling.png"
-import { FiDownload, FiGithub, FiLinkedin, FiMail, FiArrowDown, FiEye } from "react-icons/fi"
+import { FiArrowRight, FiDownload, FiGithub, FiLinkedin } from "react-icons/fi";
+import { profile, socials } from "@/lib/data";
+import { CodeWindow } from "./CodeWindow";
 
-const socials = [
-  { icon: FiGithub, href: "https://github.com/abhishek42kushwah", label: "GitHub" },
-  { icon: FiLinkedin, href: "https://www.linkedin.com/in/developer-abhishek-kushwah/", label: "LinkedIn" },
-  { icon: FiMail, href: "mailto:kushwahabhishek42@gmail.com", label: "Email" },
-]
+const stagger = (i: number) => ({ animationDelay: `${i * 70}ms` });
 
-const color_tops = ["#FF0000", "#00FF00", "#0000FF", "#FFFF00"]
-
-export const Hero = () => {
-  const COLOR = useMotionValue(color_tops[0])
-
-  useEffect(() => {
-    const controls = animate(COLOR, color_tops, {
-      duration: 10,
-      ease: "easeInOut",
-      repeat: Infinity,
-      repeatType: "mirror"
-    })
-
-    return () => controls.stop()
-  }, [COLOR])
-
-  const backgroundImage = useMotionTemplate`radial-gradient(125% 125% at 50% 0%, #000 50%, ${COLOR})`
-  const border = useMotionTemplate`1px solid ${COLOR}`
-  const boxShadow = useMotionTemplate`0px 4px 24px ${COLOR}`
-
+export function Hero() {
   return (
-    <motion.section
-      id="home"
-      className="relative grid min-h-screen place-content-center overflow-hidden px-4 py-24 text-white"
-      style={{ backgroundImage }}
-    >
-      <div className="z-10 flex flex-col items-center text-center">
-        {/* Open for Work Badge */}
-        <motion.span
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.2 }}
-          className="mb-1.5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm backdrop-blur-sm"
-        >
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
-          </span>
-          Open for work
-        </motion.span>
+    <section id="home" className="relative overflow-hidden" aria-labelledby="hero-heading">
+      {/* Background: faint grid + one soft accent wash, both static */}
+      <div className="bg-grid pointer-events-none absolute inset-0" aria-hidden />
+      <div
+        className="pointer-events-none absolute -top-40 left-1/2 h-[480px] w-[900px] max-w-[160vw] -translate-x-1/2 rounded-[100%] bg-accent/[0.10] blur-[120px]"
+        aria-hidden
+      />
 
-         {/* Hi, I am */}
-        <motion.h1
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="text-white/40 text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold"
-        >
-          Hi, I am
-        </motion.h1>
- 
-        {/* Profile Image */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="my-6"
-        >
-          <Image
-            src={image}
-            alt="Profile Picture"
-            width={150}
-            height={150}
-            className="rounded-full sm:w-[250px] sm:h-[250px] w-[150px] h-[150px] object-cover"
-          />
-        </motion.div>
- 
-        {/* Name */}
-        <motion.h1
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="bg-gradient-to-r from-white via-purple-200 to-purple-400 bg-clip-text text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-transparent"
-        >
-          Abhishek Kushwah
-        </motion.h1>
-
-        {/* Role */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.55 }}
-          className="mt-3 text-base sm:text-xl md:text-2xl font-semibold text-purple-400"
-        >
-          MERN Stack Developer
-        </motion.p>
-
-        {/* Happy Clients Section */}
-        {/* <motion.div
-          className="flex bg-white/10 shadow-xl p-3 items-center justify-center space-x-2 my-6 rounded-full"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-        >
-          <Image src={obj} width={30} height={30} alt="3D Modeling Icon" className="rounded-2xl" />
-          <Image src={obj} width={30} height={30} alt="3D Modeling Icon" className="rounded-2xl" />
-          <Image src={obj} width={30} height={30} alt="3D Modeling Icon" className="rounded-2xl" />
-          <p className="text-sm sm:text-base">20+ Happy Clients</p>
-        </motion.div> */}
-
-        {/* Description Paragraph */}
-        <motion.p
-          className="my-6 text-sm sm:text-base md:text-lg max-w-md text-gray-300"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true, amount: 0.5 }}
-        >
-          Building fast, scalable web apps with React, Next.js & Node.js. Currently
-          crafting enterprise ERP solutions at D Table Analytics with 2+ years of experience.
-        </motion.p>
-
-        {/* Action Buttons */}
-        <motion.div
-          className="flex flex-wrap items-center justify-center gap-3"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          viewport={{ once: true, amount: 0.5 }}
-        >
-          {/* Download CV Button */}
-          <motion.a
-            href="/Abhishek_kushwah_CV.pdf"
-            download="Abhishek_Kushwah_CV.pdf"
-            className="flex w-fit items-center gap-2 rounded-full px-5 py-2.5 bg-purple-600 hover:bg-purple-700 transition-colors cursor-pointer font-semibold"
-            style={{ border, boxShadow }}
-            whileHover={{ scale: 1.015 }}
-            whileTap={{ scale: 0.95 }}
-            aria-label="Download CV"
+      <div className="container-page relative grid items-center gap-12 pb-16 pt-28 sm:pt-32 md:pb-20 lg:min-h-[min(calc(100svh-104px),800px)] lg:grid-cols-[1.05fr_1fr] lg:gap-14 lg:pb-16 lg:pt-24">
+        <div>
+          <p
+            className="inline-flex animate-fade-up items-center gap-2 rounded-full border border-line bg-surface/80 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.14em] text-secondary"
+            style={stagger(0)}
           >
-            Download CV
-            <FiDownload />
-          </motion.a>
+            <span className="h-1.5 w-1.5 rounded-full bg-success" aria-hidden />
+            Available for opportunities
+          </p>
 
-          {/* View CV Button */}
-          <motion.a
-            href="/Abhishek_kushwah_CV.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex w-fit items-center gap-2 rounded-full border border-white/20 bg-white/5 px-5 py-2.5 font-semibold backdrop-blur-sm transition-colors hover:bg-white/10 cursor-pointer"
-            whileHover={{ scale: 1.015 }}
-            whileTap={{ scale: 0.95 }}
-            aria-label="View CV"
+          <h1
+            id="hero-heading"
+            className="mt-6 animate-fade-up text-[2.6rem] font-semibold leading-[1.05] tracking-[-0.03em] text-fg sm:text-6xl lg:text-[4.1rem]"
+            style={stagger(1)}
           >
-            View CV
-            <FiEye />
-          </motion.a>
+            {profile.name}
+          </h1>
 
-          {/* View Work Button */}
-          <motion.a
-            href="#portfolio"
-            className="flex w-fit items-center gap-2 rounded-full border border-white/20 bg-white/5 px-5 py-2.5 font-semibold backdrop-blur-sm transition-colors hover:bg-white/10 cursor-pointer"
-            whileHover={{ scale: 1.015 }}
-            whileTap={{ scale: 0.95 }}
-            aria-label="View Work"
+          <p
+            className="mt-4 flex animate-fade-up flex-wrap items-center gap-x-3 gap-y-1 text-lg font-medium text-secondary sm:text-xl"
+            style={stagger(2)}
           >
-            View Work
-            <FiArrowDown />
-          </motion.a>
-        </motion.div>
+            <span className="text-fg">{profile.role}</span>
+            <span className="hidden h-1 w-1 rounded-full bg-muted sm:block" aria-hidden />
+            <span>{profile.experience} experience</span>
+          </p>
 
-        {/* Social Links */}
-        <motion.div
-          className="mt-8 flex items-center gap-4"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
-          viewport={{ once: true, amount: 0.5 }}
-        >
-          {socials.map((social) => (
-            <Link
-              key={social.label}
-              href={social.href}
+          <p className="mt-6 max-w-xl animate-fade-up text-base leading-relaxed text-secondary sm:text-[17px]" style={stagger(3)}>
+            I build scalable, production-ready web applications and business platforms using{" "}
+            <span className="text-fg">React, Node.js, Express, MongoDB and TypeScript.</span>
+          </p>
+          <p className="mt-3 max-w-xl animate-fade-up text-base leading-relaxed text-secondary sm:text-[17px]" style={stagger(4)}>
+            Experienced in building ERP, FMS, HRMS and workflow-driven business applications.
+          </p>
+
+          <div className="mt-8 flex animate-fade-up flex-col gap-3 sm:flex-row" style={stagger(5)}>
+            <a href="#projects" className="btn-primary group">
+              View Projects
+              <FiArrowRight className="transition-transform group-hover:translate-x-0.5" aria-hidden />
+            </a>
+            <a href={profile.resume} download={profile.resumeFileName} className="btn-secondary">
+              <FiDownload aria-hidden />
+              Download Resume
+            </a>
+          </div>
+
+          <div className="mt-7 flex animate-fade-up items-center gap-5 text-sm text-secondary" style={stagger(6)}>
+            <a
+              href={socials.github}
               target="_blank"
-              aria-label={social.label}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-300 backdrop-blur-sm transition-all duration-300 hover:border-purple-500/50 hover:text-purple-400 hover:-translate-y-1"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 transition-colors hover:text-fg"
             >
-              <social.icon size={20} />
-            </Link>
-          ))}
-        </motion.div>
-      </div>
+              <FiGithub aria-hidden /> GitHub
+            </a>
+            <a
+              href={socials.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 transition-colors hover:text-fg"
+            >
+              <FiLinkedin aria-hidden /> LinkedIn
+            </a>
+            <span className="hidden items-center gap-2 text-muted sm:inline-flex">
+              <span className="h-1 w-1 rounded-full bg-muted" aria-hidden />
+              {profile.location}
+            </span>
+          </div>
+        </div>
 
-      {/* Background Circles */}
-      <div className="bg-circle-container">
-        <div className="bg-circle-background"></div>
-        <div className="bg-circle-continer"></div>
+        <div className="hidden animate-fade-up md:block" style={stagger(4)}>
+          <CodeWindow />
+        </div>
       </div>
-
-      
-    
-  
-    </motion.section>
+    </section>
   );
 }
-export default Hero;
