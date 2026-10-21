@@ -6,6 +6,7 @@ import { FiArrowRight, FiArrowUpRight } from "react-icons/fi";
 import { projects, type Project } from "@/lib/data";
 import { SectionHeader } from "./ui/SectionHeader";
 import { Reveal } from "./ui/Reveal";
+import { StaggerContainer, StaggerItem } from "./ui/Stagger";
 import { ProjectModal } from "./ProjectModal";
 
 const spotlight = projects[0];
@@ -53,9 +54,9 @@ export function Projects() {
         {/* More projects — compact rows */}
         <Reveal className="mt-14">
           <h3 className="font-mono text-xs uppercase tracking-[0.18em] text-muted">More projects</h3>
-          <ul className="mt-4 border-t border-line">
+          <StaggerContainer as="ul" className="mt-4 border-t border-line" stagger={0.06}>
             {more.map((project) => (
-              <li key={project.slug} className="group relative border-b border-line">
+              <StaggerItem as="li" key={project.slug} className="group relative border-b border-line">
                 <div className="grid gap-1 py-5 sm:grid-cols-[200px_1fr_auto] sm:items-center sm:gap-6">
                   <div>
                     <p className="font-medium text-fg">{project.title}</p>
@@ -74,9 +75,9 @@ export function Projects() {
                     <ExternalLink href={project.link} label={project.title} />
                   </div>
                 </div>
-              </li>
+              </StaggerItem>
             ))}
-          </ul>
+          </StaggerContainer>
         </Reveal>
       </div>
 

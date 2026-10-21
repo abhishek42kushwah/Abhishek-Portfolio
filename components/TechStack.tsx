@@ -34,6 +34,7 @@ import {
 import { techStack } from "@/lib/data";
 import { SectionHeader } from "./ui/SectionHeader";
 import { Reveal } from "./ui/Reveal";
+import { StaggerContainer, StaggerItem } from "./ui/Stagger";
 
 const icons: Record<string, IconType> = {
   React: SiReact,
@@ -90,19 +91,19 @@ export function TechStack() {
                 <span className="font-mono text-xs text-muted">0{gi + 1}</span>
                 {group.group}
               </h3>
-              <ul className="flex flex-wrap gap-2">
+              <StaggerContainer as="ul" className="flex flex-wrap gap-2" stagger={0.035}>
                 {group.items.map((tech) => {
                   const Icon = icons[tech.name];
                   return (
-                    <li key={tech.name} className="group relative">
+                    <StaggerItem as="li" key={tech.name} className="group relative">
                       <span
                         tabIndex={tech.note ? 0 : undefined}
                         aria-describedby={tech.note ? `tech-${slug(tech.name)}` : undefined}
-                        className={`inline-flex h-9 items-center gap-2 rounded-lg border border-line bg-background px-3 text-sm text-secondary transition-colors duration-200 hover:border-line-strong hover:text-fg ${
+                        className={`inline-flex h-9 items-center gap-2 rounded-lg border border-line bg-background px-3 text-sm text-secondary transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:text-fg ${
                           tech.note ? "cursor-help focus-visible:text-fg" : ""
                         }`}
                       >
-                        {Icon && <Icon className="h-3.5 w-3.5 opacity-70" aria-hidden />}
+                        {Icon && <Icon className="h-3.5 w-3.5 opacity-70 transition-transform duration-200 group-hover:opacity-100 group-hover:scale-110" aria-hidden />}
                         {tech.name}
                         {tech.note && <span className="h-1 w-1 rounded-full bg-accent/80" aria-hidden />}
                       </span>
@@ -115,10 +116,10 @@ export function TechStack() {
                           {tech.note}
                         </span>
                       )}
-                    </li>
+                    </StaggerItem>
                   );
                 })}
-              </ul>
+              </StaggerContainer>
             </Reveal>
           ))}
         </div>

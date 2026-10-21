@@ -1,5 +1,6 @@
 import { quickFacts } from "@/lib/data";
 import { Reveal } from "./ui/Reveal";
+import { StaggerContainer, StaggerItem } from "./ui/Stagger";
 
 export function About() {
   return (
@@ -31,14 +32,14 @@ export function About() {
 
         <Reveal delay={0.1} className="lg:pt-12">
           <h3 className="font-mono text-xs uppercase tracking-[0.18em] text-muted">Quick facts</h3>
-          <dl className="mt-5 border-t border-line">
+          <StaggerContainer as="dl" className="mt-5 border-t border-line" stagger={0.05}>
             {quickFacts.map((fact) => (
-              <div key={fact.label} className="flex items-baseline justify-between gap-6 border-b border-line py-3.5">
+              <StaggerItem key={fact.label} className="flex items-baseline justify-between gap-6 border-b border-line py-3.5">
                 <dt className="shrink-0 text-sm text-muted">{fact.label}</dt>
                 <dd className="text-right text-sm font-medium text-fg">{fact.value}</dd>
-              </div>
+              </StaggerItem>
             ))}
-          </dl>
+          </StaggerContainer>
         </Reveal>
       </div>
     </section>

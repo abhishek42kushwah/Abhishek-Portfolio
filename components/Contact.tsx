@@ -2,6 +2,7 @@ import type { IconType } from "react-icons";
 import { FiArrowUpRight, FiGithub, FiLinkedin, FiMail, FiMapPin, FiPhone } from "react-icons/fi";
 import { profile, socials } from "@/lib/data";
 import { Reveal } from "./ui/Reveal";
+import { StaggerContainer, StaggerItem } from "./ui/Stagger";
 import { ContactForm } from "./ContactForm";
 
 type Detail = { icon: IconType; label: string; value: string; href?: string; external?: boolean };
@@ -27,7 +28,7 @@ export function Contact() {
             Have a project, opportunity or idea? Feel free to reach out.
           </p>
 
-          <ul className="mt-10 border-t border-line">
+          <StaggerContainer as="ul" className="mt-10 border-t border-line" stagger={0.06}>
             {details.map(({ icon: Icon, label, value, href, external }) => {
               const inner = (
                 <>
@@ -36,14 +37,14 @@ export function Contact() {
                   <span className="min-w-0 flex-1 truncate text-sm text-fg">{value}</span>
                   {href && (
                     <FiArrowUpRight
-                      className="shrink-0 text-muted opacity-0 transition-opacity group-hover:opacity-100"
+                      className="shrink-0 text-muted opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-100"
                       aria-hidden
                     />
                   )}
                 </>
               );
               return (
-                <li key={label} className="border-b border-line">
+                <StaggerItem as="li" key={label} className="border-b border-line">
                   {href ? (
                     <a
                       href={href}
@@ -55,10 +56,10 @@ export function Contact() {
                   ) : (
                     <div className="flex items-center gap-4 py-4">{inner}</div>
                   )}
-                </li>
+                </StaggerItem>
               );
             })}
-          </ul>
+          </StaggerContainer>
         </Reveal>
 
         <Reveal delay={0.08} className="min-w-0">

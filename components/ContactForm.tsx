@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { AnimatePresence, m } from "framer-motion";
 import { FiAlertCircle, FiCheckCircle, FiSend } from "react-icons/fi";
 import { profile } from "@/lib/data";
 
@@ -155,21 +156,27 @@ export function ContactForm() {
       </div>
 
       <div id="form-status" role="status" aria-live="polite">
-        {status === "success" && (
-          <Notice tone="success">Thanks — your message has been sent. I&apos;ll get back to you soon.</Notice>
-        )}
-        {status === "mailto" && (
-          <Notice tone="success">Your email app should open with the message ready to send.</Notice>
-        )}
-        {status === "error" && (
-          <Notice tone="error">
-            Something went wrong. Please email me directly at{" "}
-            <a href={`mailto:${profile.email}`} className="underline underline-offset-2">
-              {profile.email}
-            </a>
-            .
-          </Notice>
-        )}
+        <AnimatePresence mode="wait">
+          {status === "success" && (
+            <Notice key="success" tone="success">
+              Thanks — your message has been sent. I&apos;ll get back to you soon.
+            </Notice>
+          )}
+          {status === "mailto" && (
+            <Notice key="mailto" tone="success">
+              Your email app should open with the message ready to send.
+            </Notice>
+          )}
+          {status === "error" && (
+            <Notice key="error" tone="error">
+              Something went wrong. Please email me directly at{" "}
+              <a href={`mailto:${profile.email}`} className="underline underline-offset-2">
+                {profile.email}
+              </a>
+              .
+            </Notice>
+          )}
+        </AnimatePresence>
       </div>
     </form>
   );
@@ -204,13 +211,17 @@ function Field({ label, id, error, children }: { label: string; id: string; erro
 function Notice({ tone, children }: { tone: "success" | "error"; children: React.ReactNode }) {
   const Icon = tone === "success" ? FiCheckCircle : FiAlertCircle;
   return (
-    <p
+    <m.p
+      initial={{ opacity: 0, y: -6 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -6 }}
+      transition={{ duration: 0.25 }}
       className={`mt-5 flex items-start gap-2.5 rounded-[10px] border px-4 py-3 text-sm ${
         tone === "success" ? "border-success/25 bg-success/10 text-success" : "border-danger/25 bg-danger/10 text-danger"
       }`}
     >
       <Icon className="mt-0.5 shrink-0" aria-hidden />
       <span>{children}</span>
-    </p>
+    </m.p>
   );
 }

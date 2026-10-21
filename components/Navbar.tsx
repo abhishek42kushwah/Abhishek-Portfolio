@@ -52,7 +52,10 @@ export function Navbar() {
   const elevated = scrolled || open;
 
   return (
-    <header
+    <m.header
+      initial={{ y: -24, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
       className={`fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,box-shadow] duration-300 ${
         elevated
           ? "border-line bg-background/80 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.8)] backdrop-blur-xl"
@@ -69,16 +72,23 @@ export function Navbar() {
 
         <ul className="hidden items-center gap-1 md:flex">
           {navLinks.map((link) => (
-            <li key={link.id}>
+            <li key={link.id} className="relative">
               <a
                 href={`#${link.id}`}
                 aria-current={active === link.id ? "true" : undefined}
-                className={`rounded-md px-3 py-1.5 text-sm transition-colors ${
+                className={`relative z-10 block rounded-md px-3 py-1.5 text-sm transition-colors ${
                   active === link.id ? "text-fg" : "text-secondary hover:text-fg"
                 }`}
               >
                 {link.label}
               </a>
+              {active === link.id && (
+                <m.span
+                  layoutId="nav-active-pill"
+                  className="absolute inset-0 rounded-md bg-white/[0.06]"
+                  transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                />
+              )}
             </li>
           ))}
         </ul>
@@ -129,16 +139,27 @@ export function Navbar() {
         {open && (
           <m.div
             id="mobile-menu"
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
+            initial="hidden"
+            animate="show"
+            exit="hidden"
+            variants={{ hidden: { opacity: 0, y: -8 }, show: { opacity: 1, y: 0 } }}
             transition={{ duration: 0.2 }}
             className="h-[calc(100dvh-var(--nav-height))] overflow-y-auto border-t border-line bg-background md:hidden"
           >
             <div className="container-page flex h-full flex-col py-6">
-              <ul className="flex flex-col">
+              <m.ul
+                className="flex flex-col"
+                initial="hidden"
+                animate="show"
+                variants={{ show: { transition: { staggerChildren: 0.06, delayChildren: 0.05 } } }}
+              >
                 {navLinks.map((link, i) => (
-                  <li key={link.id} className="border-b border-line">
+                  <m.li
+                    key={link.id}
+                    className="border-b border-line"
+                    variants={{ hidden: { opacity: 0, x: -12 }, show: { opacity: 1, x: 0 } }}
+                    transition={{ duration: 0.35, ease: [0.21, 0.47, 0.32, 0.98] }}
+                  >
                     <a
                       href={`#${link.id}`}
                       onClick={() => setOpen(false)}
@@ -147,10 +168,15 @@ export function Navbar() {
                       {link.label}
                       <span className="font-mono text-xs text-muted">0{i + 1}</span>
                     </a>
-                  </li>
+                  </m.li>
                 ))}
-              </ul>
-              <div className="mt-auto flex flex-col gap-3 pt-8">
+              </m.ul>
+              <m.div
+                className="mt-auto flex flex-col gap-3 pt-8"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.35, delay: 0.25 }}
+              >
                 <a href={profile.resume} target="_blank" rel="noopener noreferrer" className="btn-primary w-full">
                   View Resume <FiArrowUpRight aria-hidden />
                 </a>
@@ -162,11 +188,11 @@ export function Navbar() {
                     <FiLinkedin aria-hidden /> LinkedIn
                   </a>
                 </div>
-              </div>
+              </m.div>
             </div>
           </m.div>
         )}
       </AnimatePresence>
-    </header>
+    </m.header>
   );
 }
