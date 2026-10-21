@@ -114,6 +114,15 @@
   }
 }
 
+/* Keeps content scrollable while hiding the (often inconsistently themed) native scrollbar */
+.hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* legacy Edge */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge Chromium */
+}
+
 /* Subtle engineering-grid background used once, in the hero */
 .bg-grid {
   background-image:

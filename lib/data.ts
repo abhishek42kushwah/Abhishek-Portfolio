@@ -20,8 +20,8 @@ export const profile = {
   initials: "AK",
   role: "MERN Stack Developer",
   // Aug 2022 – Feb 2023 internship + Aug 2024 – present full-time.
-  experience: "Nearly 3 years",
-  experienceShort: "~3 yrs",
+  experience: "3 years",
+  experienceShort: "3 yrs",
   location: "Bhopal, India",
   locationFull: "Bhopal, Madhya Pradesh, India",
   email: "kushwahabhishek42@gmail.com",
@@ -31,7 +31,7 @@ export const profile = {
   resumeFileName: "Abhishek_Kushwah_CV.pdf",
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://abhishek-portfolio.vercel.app",
   description:
-    "MERN Stack Developer with nearly 3 years of experience building scalable web applications, ERP systems, dashboards and business workflows with React, Node.js, Express, MongoDB and TypeScript.",
+    "MERN Stack Developer with 3 years of experience building scalable web applications, ERP systems, dashboards and business workflows with React, Node.js, Express, MongoDB and TypeScript.",
 };
 
 export const socials = {
@@ -53,7 +53,7 @@ export const navLinks = [
 
 export const stats = [
   { value: profile.experienceShort, label: "Professional experience" },
-  { value: "8", label: "Live projects shipped" },
+  { value: "12", label: "Live projects shipped" },
   { value: "MERN", label: "Primary stack, with TypeScript" },
   { value: "ERP · CRM · LMS", label: "Business domains" },
 ];
@@ -61,7 +61,7 @@ export const stats = [
 export const quickFacts = [
   { label: "Location", value: profile.location },
   { label: "Experience", value: profile.experience },
-  { label: "Currently", value: "MERN Stack Developer, D Table Analytics" },
+  { label: "Currently", value: "Full Stack Developer, D Table Analytics" },
   { label: "Primary stack", value: "MERN + TypeScript" },
   { label: "Focus", value: "Full stack · ERP & business apps" },
   { label: "Education", value: "B.E. Computer Science (Hons.), 2024" },
@@ -104,6 +104,7 @@ export const techStack: TechGroup[] = [
       { name: "JWT", note: "Authentication in every multi-role app I've built" },
       { name: "OAuth" },
       { name: "RBAC", note: "Per-module, per-action permission engine in Linkd ERP" },
+      { name: "WebSocket" },
     ],
   },
   {
@@ -115,6 +116,7 @@ export const techStack: TechGroup[] = [
       { name: "Sequelize" },
       { name: "MySQL" },
       { name: "Prisma" },
+      { name: "Redis" },
     ],
   },
   {
@@ -384,7 +386,7 @@ export const projects: Project[] = [
 export const experience = [
   {
     company: "D Table Analytics",
-    role: "MERN Stack Developer",
+    role: "Full Stack Developer",
     period: "Jan 2026 — Present",
     location: "Bhopal",
     type: "Full-time",

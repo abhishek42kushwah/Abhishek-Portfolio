@@ -13,7 +13,7 @@ export function About() {
           </h2>
           <div className="mt-8 max-w-2xl space-y-5 text-base leading-[1.75] text-secondary sm:text-[17px]">
             <p>
-              I&apos;m a MERN stack developer based in Bhopal with nearly three years of professional experience,
+              I&apos;m a MERN stack developer based in Bhopal with three years of professional experience,
               most of it spent on software that businesses run on every day.
             </p>
             <p>
